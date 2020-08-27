@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
-import styled from 'styled-components';
+import React, { Fragment } from 'react'
+import styled from 'styled-components'
 import Navigation from './navigation'
 import Article from './article'
 import Footer from './footer'
@@ -11,7 +11,7 @@ const Body = styled.div`
   margin: 0;
   padding: 0;
   flex-flow: row;
-`;
+`
 
 function App() {
   return (

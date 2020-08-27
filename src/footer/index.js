@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 const FooterCompon = styled.footer`
   width: 100vw;
@@ -9,14 +9,14 @@ const FooterCompon = styled.footer`
   display: flex;
   justify-content: center;
   flex: 1;
-`;
+`
 
 function Footer() {
   return (
     <FooterCompon>
       ches4117
     </FooterCompon>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

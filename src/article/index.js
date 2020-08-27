@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 import List from './list'
 import User from './user'
 
@@ -8,7 +8,7 @@ const Body = styled.body`
   min-height: 800px;
   padding: 10px;
   background: #F3F4F7;
-`;
+`
 
 const Section = styled.section`
   width: 100%;
@@ -27,7 +27,7 @@ function Article() {
         <List />
       </Section>
     </Body>
-  );
+  )
 }
 
-export default Article;
+export default Article
