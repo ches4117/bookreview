@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import List from './list'
 import User from './user'
 
-const Body = styled.body`
+const Body = styled.div`
   width: 100vw;
   min-height: 800px;
   padding: 10px;

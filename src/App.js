@@ -4,7 +4,6 @@ import Navigation from './navigation'
 import Article from './article'
 import Footer from './footer'
 
-
 const Body = styled.div`
   background: #F3F4F7;
   display: flex;
@@ -20,7 +19,7 @@ function App() {
       <Article />
       <Footer />
     </Fragment>
-  );
+  )
 }
 
-export default App;
+export default App
