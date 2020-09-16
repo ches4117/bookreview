@@ -1,8 +1,14 @@
 import React, { Fragment } from 'react'
 import styled from 'styled-components'
+import { ApolloProvider } from 'react-apollo'
+import ApolloClient from 'apollo-boost'
 import Navigation from './navigation'
 import Article from './article'
 import Footer from './footer'
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/'
+})
 
 const Body = styled.div`
   background: #F3F4F7;
@@ -14,11 +20,11 @@ const Body = styled.div`
 
 function App() {
   return (
-    <Fragment>
+    <ApolloProvider client={client}>
       <Navigation />
       <Article />
       <Footer />
-    </Fragment>
+    </ApolloProvider>
   )
 }
 
