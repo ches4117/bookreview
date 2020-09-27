@@ -7,7 +7,7 @@ import Article from './article'
 import Footer from './footer'
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/'
+  uri: 'https://irgp4.sse.codesandbox.io/'
 })
 
 const Body = styled.div`
