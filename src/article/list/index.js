@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
+import React from 'react'
 import { Query } from 'react-apollo'
 import { gql } from 'apollo-boost'
+import { ListOutline, ListItemOutline } from './style'
 
 const getUsersQuery = gql`
 {
@@ -12,14 +12,6 @@ const getUsersQuery = gql`
 }
 `
 
-const ListOutline = styled.div`
-  height: 100%;
-  min-height: 800px;
-  background: #fff;
-  justify-content: center;
-  flex: 1;
-`
-
 function List() {
   return (
     <ListOutline>
@@ -27,15 +19,22 @@ function List() {
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>
           if (error) return <p>Error :(</p>
-          // 最重要的就是從 data 裡面取得資料
-          const lists = data.books.map(currentUser => (
-            <li key={currentUser.title}> {currentUser.author} </li>
-          ))
 
           return (
-            <div>
-              <ul style={{ 'list-style-type': 'none' }}>{lists}</ul>
-            </div>
+            <>
+              {
+                data.books.map(currentUser => (
+                  <ListItemOutline key={currentUser.title}>
+                    <h2>
+                      {currentUser.title}
+                    </h2>
+                    <p>
+                      作者：{currentUser.author}
+                    </p>
+                  </ListItemOutline>
+                ))
+              }
+            </>
           )
         }}
       </Query>

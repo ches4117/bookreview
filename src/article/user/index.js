@@ -1,12 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
-
-const UserCard = styled.div`
-  width: 250px;
-  margin-left: 10px;
-  height: 500px;
-  background: #fff;
-`
+import React from 'react'
+import { UserCard } from './style'
 
 function User() {
   return (
