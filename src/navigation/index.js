@@ -1,34 +1,14 @@
 import React from 'react'
-import styled from 'styled-components'
-
-const Header = styled.header`
-  width: 100vw;
-  padding: 10px;
-  background: #fff;
-  font-size: 18px;
-  display: flex;
-  justify-content: center;
-  flex: 1;
-`
-
-const Nav = styled.nav`
-  width: 555px;
-  display: flex;
-  justify-content: space-between;
-`
-
-const Input = styled.input`
-  width: 200px
-`
+import { Header, Nav, NavItem, SearchInput } from './style'
 
 function Navigation() {
   return (
     <Header>
       <Nav>
-        <a>書庫</a>
-        <a>書單</a>
-        <a>話題</a>
-        <Input></Input>
+        <NavItem>書庫</NavItem>
+        <NavItem>書單</NavItem>
+        <NavItem>話題</NavItem>
+        <SearchInput placeholder="hello" />
       </Nav>
     </Header>
   )

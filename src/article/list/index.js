@@ -23,7 +23,7 @@ function List() {
           return (
             <>
               {
-                data.books.map(currentUser => (
+                [].concat(data.books).concat(data.books).map(currentUser => (
                   <ListItemOutline key={currentUser.title}>
                     <h2>
                       {currentUser.title}

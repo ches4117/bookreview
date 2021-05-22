@@ -6,7 +6,7 @@ function User() {
     <UserCard>
       test
     </UserCard>
-  );
+  )
 }
 
-export default User;
+export default User
