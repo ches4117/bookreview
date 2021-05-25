@@ -6,7 +6,7 @@ import Article from './article'
 import Footer from './footer'
 
 const client = new ApolloClient({
-  uri: 'https://nxi7l.sse.codesandbox.io/'
+  uri: 'https://cvvz8.sse.codesandbox.io/'
 })
 
 function App() {

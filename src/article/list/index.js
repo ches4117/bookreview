@@ -1,41 +1,17 @@
 import React from 'react'
 import { Query } from 'react-apollo'
-import { gql } from 'apollo-boost'
-import { ListOutline, ListItemOutline } from './style'
-
-const getUsersQuery = gql`
-{
-  books {
-    title
-    author
-  }
-}
-`
+import { ListOutline } from './style'
+import { getBooksQuery } from './sql'
+import LoadMore from './LoadMore'
 
 function List() {
   return (
     <ListOutline>
-      <Query query={getUsersQuery}>
-        {({ loading, error, data }) => {
+      <Query query={getBooksQuery}>
+        {({ loading, error, data, fetchMore }) => {
           if (loading) return <p>Loading...</p>
           if (error) return <p>Error :(</p>
-
-          return (
-            <>
-              {
-                [].concat(data.books).concat(data.books).map(currentUser => (
-                  <ListItemOutline key={currentUser.title}>
-                    <h2>
-                      {currentUser.title}
-                    </h2>
-                    <p>
-                      作者：{currentUser.author}
-                    </p>
-                  </ListItemOutline>
-                ))
-              }
-            </>
-          )
+          return <LoadMore books={data.books} fetchMore={fetchMore} />
         }}
       </Query>
     </ListOutline>
