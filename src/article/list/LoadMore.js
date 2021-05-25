@@ -1,29 +1,39 @@
 import React, { useEffect, useRef } from 'react'
+import PropTypes from 'prop-types'
 import { ListItemOutline } from './style'
 
+LoadMore.propTypes = {
+  books: PropTypes.array,
+  fetchMore: PropTypes.func
+}
 
-// eslint-disable-next-line react/prop-types
+LoadMore.defaultProps = {
+  books: [],
+}
+
 export default function LoadMore({ books, fetchMore }) {
   const loader = useRef(null)
-  const handleObserver = () => {
-    fetchMore({
-      variables: {
-        // eslint-disable-next-line react/prop-types
-        offset: books.length
-      },
-      updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult) return prev
-        return Object.assign({}, prev, {
-          books: [...prev.books, ...fetchMoreResult.books]
-        })
-      }
-    })
+  const options = {
+    rootMargin: '0px 0px 10px 0px',
+    threshold: 1.0
   }
+
   useEffect(() => {
-    var options = {
-      root: null,
-      rootMargin: '20px',
-      threshold: 1.0
+    const handleObserver = (entries, observer) => {
+      if (entries[0].isIntersecting) {
+        fetchMore({
+          variables: {
+            offset: books.length
+          },
+          updateQuery: (prev, { fetchMoreResult }) => {
+            if (!fetchMoreResult.books) return prev
+            return Object.assign({}, prev, {
+              books: [...prev.books, ...fetchMoreResult.books]
+            })
+          }
+        })
+        observer.unobserve(entries[0].target)
+      }
     }
 
     const observer = new IntersectionObserver(handleObserver, options)
@@ -31,11 +41,11 @@ export default function LoadMore({ books, fetchMore }) {
       observer.observe(loader.current)
     }
 
-  }, [])
+  }, [books])
+
   return (
     <>
       {
-        // eslint-disable-next-line react/prop-types
         books.map(currentUser => (
           <ListItemOutline key={currentUser.title}>
             <h2>
@@ -47,9 +57,7 @@ export default function LoadMore({ books, fetchMore }) {
           </ListItemOutline>
         ))
       }
-      <div ref={loader}>
-        <h2>載入更多書本</h2>
-      </div>
+      <div ref={loader} />
     </>
   )
 }
