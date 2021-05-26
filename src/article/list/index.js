@@ -1,8 +1,8 @@
 import React from 'react'
 import { Query } from 'react-apollo'
 import { ListOutline } from './style'
-import { getBooksQuery } from './sql'
-import LoadMore from './LoadMore'
+import { getBooksQuery } from './utils/sql'
+import LoadMore from './components/LoadMore'
 
 function List() {
   return (
