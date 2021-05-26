@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
-import { ListItemOutline } from '../utils/style'
+import { ListItemOutline } from '../style'
 
 LoadMore.propTypes = {
   books: PropTypes.array,
