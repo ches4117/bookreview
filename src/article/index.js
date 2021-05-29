@@ -5,6 +5,7 @@ import {
   Redirect,
 } from 'react-router-dom'
 import List from './List'
+import Library from './Library'
 import { Body, Section } from './style'
 
 function Article() {
@@ -16,7 +17,7 @@ function Article() {
             <List />
           </Route>
           <Route exact path="/library">
-            <div />
+            <Library />
           </Route>
           <Route exact path="/topic">
             <div />
