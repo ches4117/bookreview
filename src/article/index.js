@@ -1,14 +1,25 @@
 import React from 'react'
-import List from './list'
-import User from './user'
+import {
+  Switch,
+  Route,
+} from 'react-router-dom'
+import List from './List'
 import { Body, Section } from './style'
 
 function Article() {
   return (
     <Body>
       <Section>
-        <User />
-        <List />
+        <Switch>
+          <Route exact path="/list">
+            <List />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route exact path="/library">
+            <div />
+          </Route>
+        </Switch>
       </Section>
     </Body>
   )

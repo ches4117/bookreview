@@ -5,9 +5,9 @@ function Navigation() {
   return (
     <Header>
       <Nav>
-        <NavItem>書庫</NavItem>
-        <NavItem>書單</NavItem>
-        <NavItem>話題</NavItem>
+        <NavItem to="/library">書庫</NavItem>
+        <NavItem to="/list">書單</NavItem>
+        <NavItem to="/topic">話題</NavItem>
         <SearchInput placeholder="hello" />
       </Nav>
     </Header>

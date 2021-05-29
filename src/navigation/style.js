@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const Header = styled.header`
   width: 100vw;
@@ -17,7 +18,9 @@ const Nav = styled.nav`
   justify-content: space-between;
 `
 
-const NavItem = styled.a`
+const NavItem = styled(Link)`
+  text-decoration: none;
+  color: black;
   :hover {
     color: blue;
     cursor: pointer;

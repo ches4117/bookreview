@@ -1,7 +1,10 @@
 import React from 'react'
 import TestRenderer from 'react-test-renderer';
+import { Query } from 'react-apollo'
 import { MockedProvider } from '@apollo/react-testing';
+import LoadMore from '../components/LoadMore'
 import { getBooksQuery } from './sql'
+import { ListOutline } from '../style'
 
 const mocks = [
   {
@@ -34,9 +37,12 @@ const mocks = [
 ];
 
 
-it('renders without error', () => {
+it('getBooksQuery without error', () => {
   TestRenderer.create(
     <MockedProvider mocks={mocks} addTypename={false}>
-      <div>test</div>
-    </MockedProvider>);
+      <ListOutline>
+        <LoadMore books={mocks[0].result.data.books} />
+      </ListOutline>
+    </MockedProvider>
+  );
 });
