@@ -20,9 +20,9 @@ const Nav = styled.nav`
 
 const NavItem = styled(Link)`
   text-decoration: none;
-  color: black;
+  color: #6C6C6C;
   :hover {
-    color: blue;
+    color: #3C3C3C;
     cursor: pointer;
     border-top: 2px solid;
   }
@@ -31,9 +31,11 @@ const NavItem = styled(Link)`
 `
 
 const SearchInput = styled.input`
-:focus {
-  border-radius: 0;
-}
+  :focus {
+    color: #272727;
+    border-radius: 0;
+  }
+  color: #5B5B5B;
   padding: 6px 12px;
   width: 200px;
   border: 1px solid #ccc;

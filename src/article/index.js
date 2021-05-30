@@ -22,7 +22,7 @@ function Article() {
           <Route exact path="/topic">
             <div />
           </Route>
-          <Route exact path="/" render={() => (<Redirect to="/list" />)} />
+          <Route exact path="/" render={() => (<Redirect to="/library" />)} />
         </Switch>
       </Section>
     </Body>

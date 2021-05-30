@@ -7,13 +7,15 @@ import LoadMore from './components/LoadMore'
 function Library() {
   return (
     <LibraryOutline>
-      <Query query={getBooksQuery}>
-        {({ loading, error, data, fetchMore }) => {
-          if (loading) return <p>Loading...</p>
-          if (error) return <p>Error :(</p>
-          return <LoadMore books={data.books} fetchMore={fetchMore} />
-        }}
-      </Query>
+      {
+        <Query query={getBooksQuery}>
+          {({ loading, error, data, fetchMore }) => {
+            if (loading) return <p>Loading...</p>
+            if (error) return <p>Error :(</p>
+            return <LoadMore books={data.books} fetchMore={fetchMore} />
+          }}
+        </Query>
+      }
     </LibraryOutline>
   )
 }
