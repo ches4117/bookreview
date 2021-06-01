@@ -12,7 +12,7 @@ function Library() {
           {({ loading, error, data, fetchMore }) => {
             if (loading) return <p>Loading...</p>
             if (error) return <p>Error :(</p>
-            return <LoadMore books={data.books} fetchMore={fetchMore} />
+            return <LoadMore books={data.books} searchBooks={data.searchBooks} fetchMore={fetchMore} />
           }}
         </Query>
       }

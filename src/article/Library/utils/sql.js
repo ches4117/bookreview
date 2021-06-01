@@ -7,5 +7,10 @@ export const getBooksQuery = gql`
       title
       author
     }
+    searchBooks(title: $title) {
+      id
+      title
+      author
+    }
   }
 `

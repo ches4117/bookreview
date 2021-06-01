@@ -5,6 +5,7 @@ import { BookReviewContext } from '../../../context'
 
 LoadMore.propTypes = {
   books: PropTypes.array,
+  searchBooks: PropTypes.array,
   fetchMore: PropTypes.func
 }
 
@@ -12,13 +13,13 @@ LoadMore.defaultProps = {
   books: [],
 }
 
-export default function LoadMore({ books, fetchMore }) {
+export default function LoadMore({ books, searchBooks, fetchMore }) {
   const [state] = useContext(BookReviewContext)
   const { searchBook } = state
   const loader = useRef(null)
   const options = {
     rootMargin: '0px 0px 10px 0px',
-    threshold: 1.0
+    threshold: 0
   }
   const handleObserver = (entries, observer) => {
     if (entries[0].isIntersecting) {
@@ -28,7 +29,6 @@ export default function LoadMore({ books, fetchMore }) {
           title: searchBook,
         },
         updateQuery: (prev, { fetchMoreResult }) => {
-          if (searchBook) return { books: fetchMoreResult.books }
           if (!fetchMoreResult.books) return prev
           return Object.assign({}, prev, {
             books: [...prev.books, ...fetchMoreResult.books]
@@ -42,28 +42,31 @@ export default function LoadMore({ books, fetchMore }) {
 
 
   useEffect(() => {
-    if (loader.current) {
+    if (loader.current && !searchBook) {
       observer.observe(loader.current)
     }
   }, [books])
 
   useEffect(() => {
-    fetchMore({
-      variables: {
-        title: searchBook,
-      },
-      updateQuery: (_, { fetchMoreResult }) => {
-        return {
-          books: fetchMoreResult.books
+    if (searchBook) {
+      fetchMore({
+        variables: {
+          title: searchBook,
+        },
+        updateQuery: (prev, { fetchMoreResult }) => {
+          return { searchBooks: fetchMoreResult.searchBooks }
         }
-      }
-    })
+      })
+      observer.disconnect()
+    } else {
+      observer.observe(loader.current)
+    }
   }, [searchBook])
 
   return (
     <>
       {
-        books.map(currentUser => (
+        searchBook ? searchBooks.map(currentUser => (
           <ListItemOutline key={currentUser.title}>
             <h2>
               {currentUser.title}
@@ -72,7 +75,17 @@ export default function LoadMore({ books, fetchMore }) {
               作者：{currentUser.author}
             </p>
           </ListItemOutline>
-        ))
+        )) :
+          books.map(currentUser => (
+            <ListItemOutline key={currentUser.title}>
+              <h2>
+                {currentUser.title}
+              </h2>
+              <p>
+                作者：{currentUser.author}
+              </p>
+            </ListItemOutline>
+          ))
       }
       <div ref={loader} />
     </>
