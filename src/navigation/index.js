@@ -1,16 +1,20 @@
 import React, { useContext } from 'react'
+import { debounce } from 'lodash'
 import { Header, Nav, NavItem, SearchInput } from './style'
 import { BookReviewContext } from '../context'
 
 function Navigation() {
-  const [state, dispatch] = useContext(BookReviewContext)
-  const { searchBook } = state
-  const handleSearchChange = value => {
-    dispatch({
-      type: 'SEARCH_BOOK',
-      payload: value
-    })
+  const [, dispatch] = useContext(BookReviewContext)
+
+  const handleSearchChange = e => {
+    delayInput(e.target.value)
   }
+
+  const delayInput = debounce(e => dispatch({
+    type: 'SEARCH_BOOK',
+    payload: e
+  }), 500)
+
   return (
     <Header>
       <Nav>
@@ -18,9 +22,8 @@ function Navigation() {
         <NavItem to="/list">書單</NavItem>
         <NavItem to="/topic">話題</NavItem>
         <SearchInput
-          value={searchBook}
           placeholder="輸入想找的書籍名稱"
-          onChange={e => handleSearchChange(e.target.value)}
+          onChange={handleSearchChange}
         />
       </Nav>
     </Header>
