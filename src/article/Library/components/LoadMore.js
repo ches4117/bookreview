@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useContext } from 'react'
+import React, { useEffect, useRef, useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { ListItemOutline } from '../style'
 import { BookReviewContext } from '../../../context'
+import Loading from '../../../common/Loading'
 
 LoadMore.propTypes = {
   books: PropTypes.array,
@@ -15,6 +16,7 @@ LoadMore.defaultProps = {
 
 export default function LoadMore({ books, searchBooks, fetchMore }) {
   const [state] = useContext(BookReviewContext)
+  const [searchLoading, setSearchLoading] = useState(false)
   const { searchBook } = state
   const loader = useRef(null)
   const options = {
@@ -49,11 +51,13 @@ export default function LoadMore({ books, searchBooks, fetchMore }) {
 
   useEffect(() => {
     if (searchBook) {
+      setSearchLoading(true)
       fetchMore({
         variables: {
           title: searchBook,
         },
         updateQuery: (prev, { fetchMoreResult }) => {
+          setSearchLoading(false)
           return { searchBooks: fetchMoreResult.searchBooks }
         }
       })
@@ -66,7 +70,7 @@ export default function LoadMore({ books, searchBooks, fetchMore }) {
   return (
     <>
       {
-        searchBook ? searchBooks.map(currentUser => (
+        searchLoading ? <Loading /> : searchBook ? searchBooks.map(currentUser => (
           <ListItemOutline key={currentUser.title}>
             <h2>
               {currentUser.title}
