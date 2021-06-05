@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { ListItemOutline } from '../style'
-import { BookReviewContext } from '../../../context'
-import Loading from '../../../common/Loading'
+import { BookReviewContext } from '@context'
+import Loading from '@common/Loading'
 
 LoadMore.propTypes = {
   books: PropTypes.array,

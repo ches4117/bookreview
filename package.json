@@ -6,6 +6,7 @@
     "@apollo/react-testing": "^4.0.0",
     "@babel/cli": "^7.14.3",
     "@babel/preset-env": "^7.14.4",
+    "@craco/craco": "^6.1.2",
     "@emotion/react": "^11.4.0",
     "@material-ui/core": "^4.11.3",
     "@testing-library/jest-dom": "^4.2.4",
@@ -19,16 +20,16 @@
     "react-apollo": "^3.1.5",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "4.0.3",
     "react-spinners": "^0.11.0",
     "react-test-renderer": "^17.0.2",
     "styled-components": "^5.3.0",
     "styled-system": "^5.1.5"
   },
   "scripts": {
-    "start": "PORT=8000 react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start --conifg craco.config.js",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -50,7 +51,6 @@
     "@types/react-dom": "^17.0.5",
     "@types/react-router": "^5.1.14",
     "@types/styled-components-react-native": "^5.1.1",
-    "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
